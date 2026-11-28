@@ -1,0 +1,20 @@
+{
+  "name": "bomberman-personal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser-based Bomberman prototype built with HTML, CSS, and vanilla JavaScript.",
+  "scripts": {
+    "start": "node server/dev-server.js",
+    "check:js": "node --check js/game-state.js && node --check js/game-rules.js && node --check js/local-session.js && node --check js/local-mode-controller.js && node --check js/multiplayer-snapshot-controller.js && node --check js/network-session.js && node --check js/lobby-controller.js && node --check js/dom-renderer.js && node --check js/input-controller.js && node --check js/main.js && node --check js/protocol.js && node --check server/room-manager.js && node --check server/game-session.js && node --check server/dev-server.js",
+    "check": "npm run check:js",
+    "test": "node --test",
+    "validate": "npm run check && npm test"
+  },
+  "dependencies": {
+    "socket.io": "^4.8.4"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.4"
+  }
+}

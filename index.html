@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bomberman</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="title-block">
+                <p class="eyebrow">Arcade arena</p>
+                <h1>Bomberman</h1>
+            </div>
+            <nav class="mode-switch" aria-label="Game mode">
+                <button id="local-mode-button" type="button">Local Game</button>
+                <button id="multiplayer-mode-button" type="button">Multiplayer Lobby</button>
+            </nav>
+        </header>
+
+        <p id="connection-status" class="connection-status" role="status">Connecting to server...</p>
+
+        <section id="lobby" class="lobby" aria-label="Multiplayer lobby" hidden>
+            <div class="panel-heading">
+                <p class="eyebrow">Online match</p>
+                <h2>Multiplayer Lobby</h2>
+            </div>
+
+            <div class="lobby-form">
+                <label for="display-name">Display name</label>
+                <input id="display-name" type="text" minlength="2" maxlength="16" autocomplete="nickname">
+            </div>
+
+            <div class="lobby-actions lobby-entry-actions">
+                <button id="create-room-button" type="button">Create Room</button>
+                <div class="join-row">
+                    <label for="room-id">Room ID</label>
+                    <input id="room-id" type="text" maxlength="6" pattern="[A-Za-z0-9]{6}" autocomplete="off">
+                    <button id="join-room-button" type="button">Join Room</button>
+                </div>
+            </div>
+
+            <div class="room-summary">
+                <p><span>Room</span><strong id="current-room-id">Not in a room</strong></p>
+                <p><span>Status</span><strong id="room-status">Waiting for a room</strong></p>
+            </div>
+
+            <div class="lobby-player-panel">
+                <h3>Players</h3>
+                <ul id="player-list"></ul>
+            </div>
+
+            <div class="lobby-actions lobby-room-actions">
+                <button id="start-game-button" type="button" disabled>Start Game</button>
+                <button id="leave-room-button" type="button" disabled>Leave Room</button>
+            </div>
+
+            <p id="lobby-message" class="lobby-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <main id="game-area">
+            <section id="game-status" aria-label="Player status">
+                <p class="eyebrow">Match status</p>
+                <h2 id="match-result">Match in progress</h2>
+                <h3>Players</h3>
+                <ul id="player-status-list"></ul>
+                <div class="game-actions">
+                    <button id="play-again-button" type="button" hidden>Play again</button>
+                    <button id="game-leave-room-button" type="button" hidden>Leave Room</button>
+                </div>
+                <aside class="controls-guide" aria-label="Keyboard controls">
+                    <h3>Controls</h3>
+                    <p><kbd>Arrow keys</kbd><span>Move</span></p>
+                    <p><kbd>Space</kbd><span>Place bomb</span></p>
+                    <p><kbd>R</kbd><span>Reset / replay</span></p>
+                </aside>
+            </section>
+            <div class="board-frame">
+                <div id="game" aria-label="Bomberman board"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
